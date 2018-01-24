@@ -295,7 +295,10 @@ SHARDABLE.forEach((cmd) => {
           if(!client._isMaster) {
             client = wrappedClient.slaves.next(client);
 
+            console.log(`switching to shard ${client.address}`);
+
             if (client._rrindex == startIndex) {
+              console.log(`switching to master shard`);
               client = findMasterClient(shardKey, _this._wrappedClients);
             }
 
